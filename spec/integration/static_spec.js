@@ -1,6 +1,7 @@
 const request = require("request");
 const server = require("../../src/server");
 const base = "http://localhost:3000/";
+const aboutUs = "http://localhost:3000/about";
 
 describe("routes : static", () => {
 
@@ -17,11 +18,13 @@ describe("routes : static", () => {
     });
   });
 
-  describe("GET /marco", () => {
-    it("should return status code 200", (done) => {
-      request.get("http://localhost:3000/marco", (err, res, body) => {
+  describe("GET /about", () => {
+
+    it("should return status code 200 and have '/About Us/' in the body of the response", () => {
+      request.get(base, (err, res, body) => {
         expect(res.statusCode).toBe(200);
-        expect(res.body).toBe("polo");
+        expect(body).toContain("About Us");
+
         done();
       });
     });
