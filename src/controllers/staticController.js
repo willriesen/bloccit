@@ -4,6 +4,6 @@ module.exports = {
     },
 
     about(req, res, next){
-        res.render("static/about.ejs")
+        res.render("static/about.ejs", {title: "About Bloccit"});
       }
   }
