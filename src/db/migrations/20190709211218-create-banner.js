@@ -24,11 +24,11 @@ module.exports = {
       },
       topicId: {
         type: Sequelize.INTEGER,
-        onDelete: "CASCADE",
+        onDelete: 'CASCADE',
         references: {
-          model: "Topic",
-          key: "id",
-          as: "topicId",
+          model: 'Topics',
+          key: 'id',
+          as: 'topicId',
         },
       }
     });
