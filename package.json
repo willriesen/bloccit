@@ -10,6 +10,7 @@
   "author": "William Riesen",
   "license": "ISC",
   "devDependencies": {
+    "faker": "^4.1.0",
     "jasmine": "^3.0.0",
     "request": "^2.83.0"
   },
@@ -21,6 +22,7 @@
     "express": "^4.16.2",
     "pg": "^7.4.1",
     "pg-hstore": "^2.3.2",
-    "sequelize": "^4.32.6"
+    "sequelize": "^4.32.6",
+    "sequelize-cli": "^5.5.0"
   }
 }
