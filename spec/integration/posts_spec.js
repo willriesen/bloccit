@@ -18,6 +18,7 @@ describe("routes : posts", () => {
       Topic.create({
         title: "Winter Games",
         description: "Post your Winter Games stories."
+        
       })
       .then((topic) => {
         this.topic = topic;
@@ -150,7 +151,8 @@ describe("routes : posts", () => {
           url: `${base}/${this.topic.id}/posts/${this.post.id}/update`,
           form: {
             title: "Snowman Building Competition"
-          }
+          },
+         
         };
         request.post(options,
           (err, res, body) => {
