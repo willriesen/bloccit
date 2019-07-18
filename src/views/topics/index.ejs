@@ -15,6 +15,7 @@
 <!-- #2 -->
           <li class="list-group-item">
             <a href="/topics/<%= topic.id %>"> <%= topic.title %> </a>
+            <% include ../static/partials/messages.ejs %>
           </li>
         <% }) %>
       </ul>
