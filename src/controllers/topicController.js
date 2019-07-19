@@ -18,6 +18,8 @@ module.exports = {
   },
 
   create(req, res, next) {
+      
+      console.log('WE HAVE ENTERED CREATE');
     let newTopic = {
       title: req.body.title,
       description: req.body.description

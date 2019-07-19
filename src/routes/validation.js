@@ -24,12 +24,13 @@ module.exports = {
     },
 
     validateTopics(req, res, next) {
+      console.log('VALIDATING TOPICS');
 
 
         if(req.method === "POST") {
     
     
-          req.checkParams("topicId", "must be valid").notEmpty().isInt();
+          
           req.checkBody("title", "must be at least 5 characters in length").isLength({min: 5});
           req.checkBody("description", "must be at least 10 characters in length").isLength({min: 10});
         }
@@ -38,6 +39,7 @@ module.exports = {
         const errors = req.validationErrors();
     
         if (errors) {
+          
     
     
           req.flash("error", errors);
