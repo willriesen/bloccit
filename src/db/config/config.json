@@ -8,6 +8,7 @@
      "logging": false,
      "operatorsAliases": false  
   },
+  
   "test": {
     "username": "williamdriesen",
     "password": null,
