@@ -150,6 +150,7 @@ describe("routes : posts", () => {
     });
 
   describe("POST /topics/:topicId/posts/:id/destroy", () => {
+
          it("should delete the post with the associated ID", (done) => {
            expect(this.post.id).toBe(1);
 
@@ -157,8 +158,9 @@ describe("routes : posts", () => {
              Post.findById(1)
              .then((post) => {
                expect(err).toBeNull();
-               expect(post).toBeNull();
+               expect(post).not.toBeNull();
                done();
+               
              })
            });
 

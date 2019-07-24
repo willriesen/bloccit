@@ -25,7 +25,7 @@ module.exports = {
 
   deletePost(req, callback){
     return Post.findByPk(req.params.id)
-
+    
     .then((post) => {
       const authorized = new Authorizer(req.user, post).destroy();
 
@@ -34,14 +34,19 @@ module.exports = {
         .then((res) => {
           callback(null, post);
         });
+        console.log("WHAT IS GOING ON", post);
       } else {
         req.flash('notice', "You are not authorized to do that.");
       }
     })
     .catch((err) => {
       callback(err);
+      
     })
+  
   },
+
+
   updatePost(req, updatedPost, callback){
     return Post.findByPk(req.params.id)
     .then((post) => {
