@@ -10,15 +10,45 @@
 
   <main class="container">
 
-
     <% include ../static/partials/messages.ejs %>
+
     <div style="display: flex; align-items:center;">
       <% if(currentUser) { %>
         <% include ../votes/voting.ejs %>
       <% } %>
-  
       <h1><%= post.title %></h1>
     </div>
+
+      <p><%= post.body %></p>
+
+       <% if (currentUser && (currentUser.isAdmin() || currentUser.id == post.userId)) { %>
+       <a href="/topics/<%= post.topicId %>/posts/<%= post.id %>/edit" class="btn btn-warning">Edit</a>
+       <form style="display:initial" action="/topics/<%= post.topicId %>/posts/<%= post.id %>/destroy" method="post">
+         <button type="submit" class="btn btn-danger">Delete</button>
+       </form>
+     <% } %>
+
+     <a href="/topics/<%= post.topicId %>" class="btn btn-info">Back to Topic</a>
+
+     <section id="comment-form">
+
+     <!--We only show the form if there is a signed in user-->
+      <% if(currentUser) { %>
+      <% include ../comments/new.ejs %>
+      <% } %>
+    </section>
+
+      <!--List the comments associated with this post-->
+
+    <section id="comment-list">
+      <% if(post.comments) { %>
+      <% post.comments.forEach((comment) => { %>
+      <%- include("../comments/show.ejs", {comment}) %>
+      <% }) %>
+      <% } %>
+    </section>
+
+    </h1>
     <a href="/topics/<%= post.topicId %>/posts/<%= post.id %>/edit" class="btn btn-warning">Edit</a>
     <form style="display:initial" action="/topics/<%= post.topicId %>/posts/<%= post.id %>/destroy" method="post">
       <button type="submit" class="btn btn-danger">Delete</button>
@@ -26,25 +56,8 @@
     <p>
       <%= post.body %>
     </p>
-    <section id="comment-form">
-
-  <!-- #1 -->
-      <% if(currentUser) { %>
-        <% include ../comments/new.ejs %>
-      <% } %>
-    </section>
-  
-  <!-- #2 -->
-    <section id="comment-list">
-      <% if(post.comments) { %>
-        <% post.comments.forEach((comment) => { %>
-  
-  <!-- #3 -->
-          <%- include("../comments/show.ejs", {comment}) %>
-        <% }) %>
-      <% } %>
-    </section>
     <a href="/topics/<%= post.topicId %>" class="btn btn-info">Back to Topic</a>
+
   </main>
 
   <% include ../static/partials/baseScripts.ejs %>

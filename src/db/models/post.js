@@ -39,22 +39,29 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: "postId",
       as: "votes"
     });
-  };
-  Post.prototype.isOwner = function() {
-    return this.userId === this.foreignKey;
-  }
+    
+    Post.prototype.getPoints = function(votes) {
+      // #1
+      if(this.votes.length === 0) return 0
 
-  Post.prototype.getPoints = function(){
+      // #2
+          return this.votes
+            .map((v) => { return v.value })
+            .reduce((prev, next) => { return prev + next });
+        };
+       };
+    Post.prototype.hasUpvoteFor = function(userId){
+      if (this.votes.userId == userId && this.votes.value === 1){
+       return true
+     }
+    };
 
-    // #1
-        if(this.votes.length === 0) return 0
-   
-    // #2
-        return this.votes
-          .map((v) => { return v.value })
-          .reduce((prev, next) => { return prev + next });
-      };
-   
-  return Post;
+    Post.prototype.hasDownvoteFor = function(userId){
+      if (this.votes.userId == userId && this.votes.value === -1){
+       return true
+     }
+    };
 
+
+ return Post;
 };
