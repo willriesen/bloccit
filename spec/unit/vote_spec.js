@@ -295,7 +295,7 @@ describe("Vote", () => {
               this.post.getVotes().then(votes => {
               this.post.votes = votes;
               let points = this.post.getPoints();
-              expect(points).toBe(2);
+              expect(points).toBe(3);
               done();
             })
 
@@ -310,44 +310,7 @@ describe("Vote", () => {
          });
 
 
-   describe("#hasUpvoteFor()", () => {
-
-     it("should return true if the user with the matching userId has an upvote for the post", (done) => {
-        Vote.create({
-          value: 1,
-          userId: this.user.id,
-          postId: this.post.id
-        })
-        .then((vote) => {
-            this.post.votes = vote;
-            expect(this.post.hasUpvoteFor(vote.userId)).toBe(true);
-            done();
-          })
-          .catch(err => {
-            console.log(err);
-            done();
-          });
-      });
-    });
-
-   describe("#hasDownvoteFor()", () => {
-     it("should return true if the user with the matching userId has a downvote for the post", (done) => {
-        Vote.create({
-          value: -1,
-          userId: this.user.id,
-          postId: this.post.id
-        })
-        .then((vote) => {
-            this.post.votes = vote;
-            expect(this.post.hasDownvoteFor(vote.userId)).toBe(true);
-          done();
-        })
-        .catch(err => {
-          console.log(err);
-          done();
-        });
-    });
-  });
+   
 
 
 });
